@@ -36,6 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
 #服务器数据
-.properties
+application-test.properties
