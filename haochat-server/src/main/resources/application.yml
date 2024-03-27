@@ -1,3 +1,6 @@
+server:
+  prot: ${haochat.spring.server.port}
+
 spring:
   profiles:
     #运行的环境

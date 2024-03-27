@@ -1,6 +1,6 @@
 package com.gugugu.haochat.websocket.adapter;
 
-import com.gugugu.haochat.chat.domain.vo.resp.ChatMessageResp;
+import com.gugugu.haochat.chat.domain.vo.resp.message.ChatMessageResp;
 import com.gugugu.haochat.common.domain.enums.WsRespTypeEnum;
 import com.gugugu.haochat.user.domain.entity.User;
 import com.gugugu.haochat.websocket.domain.vo.WsLoginVO;

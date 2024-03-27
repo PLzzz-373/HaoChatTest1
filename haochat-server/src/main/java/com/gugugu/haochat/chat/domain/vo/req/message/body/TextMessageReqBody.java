@@ -18,7 +18,7 @@ public class TextMessageReqBody {
      * 消息内容
      */
     @NotBlank(message = "内容不能为空")
-    @Size(max = 1024, message = "消息内容过长，服务器扛不住啊，兄dei")
+    @Size(max = 1024, message = "消息内容过长")
     private String content;
 
     /**

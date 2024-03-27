@@ -41,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Serializable getValidUid(String token) {
+    public Long getValidUid(String token) {
         if (StrUtil.isEmpty(token) || NULL.equals(token)) {
             return null;
         }

@@ -7,5 +7,5 @@ public interface LoginService {
 
     boolean verify(String token);
 
-    Serializable getValidUid(String token);
+    Long getValidUid(String token);
 }

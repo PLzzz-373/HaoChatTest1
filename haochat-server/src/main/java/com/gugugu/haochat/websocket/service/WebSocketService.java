@@ -21,4 +21,8 @@ public interface WebSocketService {
     void scanLoginSuccess(Integer loginCode, User user, String token);
 
     void subscribeSuccess(Integer code);
+
+    void sendMsgToOne(Long uid, WsBaseResp<?> wsBaseResp);
+
+    void sendMsgToAll(WsBaseResp<?> wsBaseResp, Long skipUid);
 }

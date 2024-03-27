@@ -37,7 +37,7 @@
     <lombok.version>1.18.10</lombok.version>
     <netty-all.version>4.1.76.Final</netty-all.version>
     <weixin-java-mp.version>4.4.0</weixin-java-mp.version>
-    <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
+    <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
     <jsoup.version>1.15.3</jsoup.version>
     <okhttp.version>4.8.1</okhttp.version>
     <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>

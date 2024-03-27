@@ -1,5 +1,6 @@
 package com.gugugu.haochat.websocket.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.json.JSONUtil;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -84,6 +86,8 @@ public class WebSocketServiceImpl implements WebSocketService {
     private UserRoleDAO userRoleDAO;
     @Resource
     private WxMpService wxMpService;
+    @Resource
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
     @Override
     public void connet(Channel channel) {
         CHANNEL_CONNECT_MAP.put(channel,new WsConnectInfoDTO());
@@ -209,6 +213,28 @@ public class WebSocketServiceImpl implements WebSocketService {
         update.setIpInfo(user.getIpInfo());
         update.setLastOptTime(new Date());
         sendMsgToOne(channel, WsAdapter.buildSubscribeSuccessResp());
+    }
+
+    @Override
+    public void sendMsgToOne(Long uid, WsBaseResp<?> wsBaseResp) {
+        CopyOnWriteArrayList<Channel> channels = UID_CHANNEL_MAP.get(uid);
+        if (CollectionUtil.isEmpty(channels)) {
+            log.info("用户：{}不在线", uid);
+            return;
+        }
+        channels.forEach(channel -> {
+            threadPoolTaskExecutor.execute(() -> sendMsgToOne(channel, wsBaseResp));
+        });
+    }
+
+    @Override
+    public void sendMsgToAll(WsBaseResp<?> wsBaseResp, Long skipUid) {
+        CHANNEL_CONNECT_MAP.forEach((channel, ext) -> {
+            if (Objects.nonNull(skipUid) && Objects.equals(ext.getUid(), skipUid)) {
+                return;
+            }
+            threadPoolTaskExecutor.execute(() -> sendMsgToOne(channel, wsBaseResp));
+        });
     }
 
 

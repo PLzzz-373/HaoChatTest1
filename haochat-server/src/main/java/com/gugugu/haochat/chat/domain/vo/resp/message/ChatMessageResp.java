@@ -1,4 +1,4 @@
-package com.gugugu.haochat.chat.domain.vo.resp;
+package com.gugugu.haochat.chat.domain.vo.resp.message;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

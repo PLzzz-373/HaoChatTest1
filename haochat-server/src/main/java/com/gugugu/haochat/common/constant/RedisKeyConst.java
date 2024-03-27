@@ -5,7 +5,7 @@ public class RedisKeyConst {
     /**
      * 根前缀
      */
-    private static final String BASE_KEY = "blackchat:";
+    private static final String BASE_KEY = "haochat:";
 
     /**
      * 登录码

@@ -4,7 +4,8 @@ public class UserConst {
     /**
      * 用户token密钥
      */
-    public static final String USER_TOKEN_SECRET = "blackchat";
+
+    public static final String USER_TOKEN_SECRET = "gugugu12312";
 
     /**
      * 用户token过期时间
